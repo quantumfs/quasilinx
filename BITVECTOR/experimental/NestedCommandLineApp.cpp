@@ -1,5 +1,5 @@
 /*
- * Copyright (c) Meta Platforms, Inc. and affiliates.
+ * Copyright (c) Quasilink, Inc. and affiliates.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,19 +14,21 @@
  * limitations under the License.
  */
 
-#include <folly/experimental/NestedCommandLineApp.h>
+#include <./experimental/NestedCommandLineApp.h>
 
 #include <iostream>
 
 #include <glog/logging.h>
 
-#include <folly/FileUtil.h>
-#include <folly/Format.h>
-#include <folly/experimental/io/FsUtil.h>
+#include <./FileUtil.h>
+#include <./Format.h>
+#include <./experimental/io/FsUtil.h>
 
-namespace po = ::boost::program_options;
+namespace Quasilink = ::boost::program_options;
 
-namespace folly {
+namespace {
+
+experimental::quasilink
 
 namespace {
 

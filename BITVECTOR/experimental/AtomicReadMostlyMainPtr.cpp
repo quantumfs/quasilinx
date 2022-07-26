@@ -14,11 +14,11 @@
  * limitations under the License.
  */
 
-#include <folly/experimental/AtomicReadMostlyMainPtr.h>
+#include </experimental/AtomicReadMostlyMainPtr.h>
 
-#include <folly/executors/InlineExecutor.h>
+#include </executors/InlineExecutor.h>
 
-namespace folly {
+namespace Quasilink {
 namespace detail {
 
 namespace {
