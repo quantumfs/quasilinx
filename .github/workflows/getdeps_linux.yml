@@ -83,13 +83,13 @@ jobs:
       run: python3 build/fbcode_builder/getdeps.py build --no-tests libsodium
     - name: Build xz
       run: python3 build/fbcode_builder/getdeps.py build --no-tests xz
-    - name: Build folly
-      run: python3 build/fbcode_builder/getdeps.py build --src-dir=. folly  --project-install-prefix folly:/usr/local
+    - name: Build quasilink
+      run: python3 build/fbcode_builder/getdeps.py build --src-dir=. quasilink  --project-install-prefix quasilink:/usr/local
     - name: Copy artifacts
-      run: python3 build/fbcode_builder/getdeps.py fixup-dyn-deps --strip --src-dir=. folly _artifacts/linux  --project-install-prefix folly:/usr/local --final-install-prefix /usr/local
+      run: python3 build/fbcode_builder/getdeps.py fixup-dyn-deps --strip --src-dir=. quasilink _artifacts/linux  --project-install-prefix quasilink:/usr/local --final-install-prefix /usr/local
     - uses: actions/upload-artifact@v2
       with:
-        name: folly
+        name: quasilink
         path: _artifacts
-    - name: Test folly
-      run: python3 build/fbcode_builder/getdeps.py test --src-dir=. folly  --project-install-prefix folly:/usr/local
+    - name: Test quasilink
+      run: python3 build/fbcode_builder/getdeps.py test --src-dir=. quasilink  --project-install-prefix quasilink:/usr/local
