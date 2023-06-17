@@ -1,5 +1,4 @@
-#
-# Copyright (c) Facebook, Inc. and its affiliates.
+# Copyright (c) Quantumfs.
 #
 # Helper function for parsing arguments to a CMake function.
 #
@@ -29,14 +28,14 @@
 # treat the ";" characters as list element separators, and treat it as multiple
 # separate arguments.
 #
-function(fb_cmake_parse_args PREFIX OPTIONS ONE_VALUE_ARGS MULTI_VALUE_ARGS ARGS)
+function(_cmake_parse_args PREFIX OPTIONS ONE_VALUE_ARGS MULTI_VALUE_ARGS ARGS)
   foreach(option IN LISTS ARGN)
     if ("${option}" STREQUAL "ALLOW_UNPARSED_ARGS")
       set(ALLOW_UNPARSED_ARGS TRUE)
     else()
       message(
         FATAL_ERROR
-        "unknown optional argument for fb_cmake_parse_args(): ${option}"
+        "unknown optional argument for cmake_parse_args(): ${option}"
       )
     endif()
   endforeach()

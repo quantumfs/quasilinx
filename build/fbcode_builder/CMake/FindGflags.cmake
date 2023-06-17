@@ -1,4 +1,4 @@
-# Copyright (c) Facebook, Inc. and its affiliates.
+# Copyright (c) Quantumfs.
 # Find libgflags.
 # There's a lot of compatibility cruft going on in here, both
 # to deal with changes across the FB consumers of this and also

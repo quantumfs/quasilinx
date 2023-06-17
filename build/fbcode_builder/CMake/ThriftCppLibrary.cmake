@@ -1,6 +1,6 @@
-# Copyright (c) Facebook, Inc. and its affiliates.
+# Copyright (c) Quantumfs.
 
-include(FBCMakeParseArgs)
+include(CMakeParseArgs)
 
 # Generate a C++ library from a thrift file
 #
@@ -20,11 +20,11 @@ include(FBCMakeParseArgs)
 #   Defaults to "${INCLUDE_DIR}/thrift-files" if not specified.
 #   The caller must still call install() to install the thrift library if
 #   desired.
-function(add_fbthrift_cpp_library LIB_NAME THRIFT_FILE)
+function(add_thrift_cpp_library LIB_NAME THRIFT_FILE)
   # Parse the arguments
   set(one_value_args INCLUDE_DIR THRIFT_INCLUDE_DIR)
   set(multi_value_args SERVICES DEPENDS OPTIONS)
-  fb_cmake_parse_args(
+  _cmake_parse_args(
     ARG "" "${one_value_args}" "${multi_value_args}" "${ARGN}"
   )
   if(NOT DEFINED ARG_INCLUDE_DIR)
@@ -95,7 +95,7 @@ function(add_fbthrift_cpp_library LIB_NAME THRIFT_FILE)
   # include list as a single argument and split it up before invoking the
   # thrift compiler.
   if (NOT POLICY CMP0067)
-    message(FATAL_ERROR "add_fbthrift_cpp_library() requires CMake 3.8+")
+    message(FATAL_ERROR "add_thrift_cpp_library() requires CMake 3.8+")
   endif()
   set(
     thrift_include_options
@@ -111,7 +111,7 @@ function(add_fbthrift_cpp_library LIB_NAME THRIFT_FILE)
     COMMAND
       "${CMAKE_COMMAND}" -E make_directory "${output_dir}"
     COMMAND
-      "${FBTHRIFT_COMPILER}"
+      "${THRIFT_COMPILER}"
       --legacy-strict
       --gen "mstch_cpp2:${GEN_ARG_STR}"
       "${thrift_include_options}"
@@ -123,7 +123,7 @@ function(add_fbthrift_cpp_library LIB_NAME THRIFT_FILE)
       "${THRIFT_FILE}"
     DEPENDS
       ${ARG_DEPENDS}
-      "${FBTHRIFT_COMPILER}"
+      "${THRIFT_COMPILER}"
   )
 
   # Now emit the library rule to compile the sources
@@ -148,7 +148,7 @@ function(add_fbthrift_cpp_library LIB_NAME THRIFT_FILE)
     "${LIB_NAME}"
     PUBLIC
       ${ARG_DEPENDS}
-      FBThrift::thriftcpp2
+      Thrift::thriftcpp2
       Folly::folly
   )
 

@@ -1,17 +1,17 @@
-# Copyright (c) Facebook, Inc. and its affiliates.
+# Copyright (c) Quantumfs.
 
-include(FBCMakeParseArgs)
-include(FBThriftPyLibrary)
-include(FBThriftCppLibrary)
+include(CMakeParseArgs)
+include(ThriftPyLibrary)
+include(ThriftCppLibrary)
 
 #
-# add_fbthrift_library()
+# add_thrift_library()
 #
 # This is a convenience function that generates thrift libraries for multiple
 # languages.
 #
 # For example:
-#   add_fbthrift_library(
+#   add_thrift_library(
 #     foo foo.thrift
 #     LANGUAGES cpp py
 #     SERVICES Foo
@@ -19,14 +19,15 @@ include(FBThriftCppLibrary)
 #
 # will be expanded into two separate calls:
 #
-# add_fbthrift_cpp_library(foo_cpp foo.thrift SERVICES Foo DEPENDS bar_cpp)
-# add_fbthrift_py_library(foo_py foo.thrift SERVICES Foo DEPENDS bar_py)
+# add_thrift_cpp_library(foo_cpp foo.thrift SERVICES Foo DEPENDS bar_cpp)
+# add_thrift_py_library(foo_py foo.thrift SERVICES Foo DEPENDS bar_py)
 #
-function(add_fbthrift_library LIB_NAME THRIFT_FILE)
+function(add_thrift_library LIB_NAME THRIFT_FILE)
   # Parse the arguments
   set(one_value_args PY_NAMESPACE INCLUDE_DIR THRIFT_INCLUDE_DIR)
   set(multi_value_args SERVICES DEPENDS LANGUAGES CPP_OPTIONS PY_OPTIONS)
-  fb_cmake_parse_args(
+  
+_cmake_parse_args(
     ARG "" "${one_value_args}" "${multi_value_args}" "${ARGN}"
   )
 
@@ -48,7 +49,8 @@ function(add_fbthrift_library LIB_NAME THRIFT_FILE)
 
   foreach(lang IN LISTS ARG_LANGUAGES)
     if ("${lang}" STREQUAL "cpp")
-      add_fbthrift_cpp_library(
+      add_
+    thrift_cpp_library(
         "${LIB_NAME}_cpp" "${THRIFT_FILE}"
         SERVICES ${ARG_SERVICES}
         DEPENDS ${CPP_DEPENDS}
@@ -60,7 +62,8 @@ function(add_fbthrift_library LIB_NAME THRIFT_FILE)
       if (DEFINED ARG_PY_NAMESPACE)
         set(namespace_args NAMESPACE "${ARG_PY_NAMESPACE}")
       endif()
-      add_fbthrift_py_library(
+      add_
+    thrift_py_library(
         "${LIB_NAME}_py" "${THRIFT_FILE}"
         SERVICES ${ARG_SERVICES}
         ${namespace_args}

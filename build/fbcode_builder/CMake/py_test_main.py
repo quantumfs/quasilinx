@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 #
-# Copyright (c) Facebook, Inc. and its affiliates.
+# Copyright (c) Quantumfs.
 #
 """
 This file contains the main module code for Python test programs.

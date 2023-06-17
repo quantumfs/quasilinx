@@ -1,4 +1,4 @@
-# Copyright (c) Facebook, Inc. and its affiliates.
+# Copyright (c) Quantumfs.
 # - Find LibEvent (a cross event library)
 # This module defines
 # LIBEVENT_INCLUDE_DIR, where to find LibEvent headers
