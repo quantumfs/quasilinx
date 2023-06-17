@@ -1,10 +1,7 @@
-# See the documentation for more information:
-# https://packit.dev/docs/configuration
+specfile_path: quasilink.spec
 
-specfile_path: folly.spec
-
-upstream_package_name: folly
-downstream_package_name: folly
+upstream_package_name: quasi
+downstream_package_name: link
 
 actions:
   post-upstream-clone: "bash -c \"git clone -b packit https://pagure.io/meta/folly.git folly-dist-git && mv folly-dist-git/folly*.{spec,patch} .\""
