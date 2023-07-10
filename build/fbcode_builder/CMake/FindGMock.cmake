@@ -1,4 +1,4 @@
-# Copyright (c) Facebook, Inc. and its affiliates.
+# Copyright (c) Quantumfs.
 # Find libgmock
 #
 #  LIBGMOCK_DEFINES     - List of defines when using libgmock.

@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 #
-# Copyright (c) Facebook, Inc. and its affiliates.
+# Copyright (c) Quantumfs.
 #
 import argparse
 import collections
@@ -12,7 +12,7 @@ import tempfile
 import zipapp
 
 MANIFEST_SEPARATOR = " :: "
-MANIFEST_HEADER_V1 = "FBPY_MANIFEST 1\n"
+MANIFEST_HEADER_V1 = "PY_MANIFEST 1\n"
 
 
 class UsageError(Exception):
@@ -132,7 +132,7 @@ def build_zipapp(args, path_map):
     (.so/.dll files).
     """
     dest_dir = os.path.dirname(args.output)
-    with tempfile.TemporaryDirectory(prefix="make_fbpy.", dir=dest_dir) as tmpdir:
+    with tempfile.TemporaryDirectory(prefix="make_py.", dir=dest_dir) as tmpdir:
         inst_dir = os.path.join(tmpdir, "tree")
         populate_install_tree(inst_dir, path_map)
 
@@ -172,7 +172,7 @@ def build_install_dir(args, path_map):
     # location.  This ensures that we don't ever leave a halfway-built
     # directory behind at the output path if something goes wrong.
     dest_dir = os.path.dirname(args.output)
-    with tempfile.TemporaryDirectory(prefix="make_fbpy.", dir=dest_dir) as tmpdir:
+    with tempfile.TemporaryDirectory(prefix="make_py.", dir=dest_dir) as tmpdir:
         inst_dir = os.path.join(tmpdir, "tree")
         populate_install_tree(inst_dir, path_map)
         create_main_module(args, inst_dir, path_map)

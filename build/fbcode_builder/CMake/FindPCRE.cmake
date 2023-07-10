@@ -1,4 +1,4 @@
-# Copyright (c) Facebook, Inc. and its affiliates.
+# Copyright (c) Quantumfs.
 include(FindPackageHandleStandardArgs)
 find_path(PCRE_INCLUDE_DIR NAMES pcre.h)
 find_library(PCRE_LIBRARY NAMES pcre)

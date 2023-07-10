@@ -1,5 +1,4 @@
-# Copyright (c) Facebook, Inc. and its affiliates.
-# - Try to find Glog
+# Copyright (c) Quantumfs.# - Try to find Glog
 # Once done, this will define
 #
 # GLOG_FOUND - system has Glog

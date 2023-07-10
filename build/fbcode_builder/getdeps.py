@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-# Copyright (c) Meta Platforms, Inc. and affiliates.
+# Copyright (c) Quasilink, Inc. and affiliates.
 #
 # This source code is licensed under the MIT license found in the
 # LICENSE file in the root directory of this source tree.
@@ -33,7 +33,7 @@ from getdeps.subcmd import add_subcommands, cmd, SubCmd
 
 
 try:
-    import getdeps.facebook  # noqa: F401
+    import getdeps.  # noqa: F401
 except ImportError:
     # we don't ship the facebook specific subdir,
     # so allow that to fail silently
@@ -81,12 +81,12 @@ class ProjectCmdBase(SubCmd):
                 raise UsageError(
                     "no project name specified, and no .projectid file found"
                 )
-            if opts.repo_project == "fbsource":
-                # The fbsource repository is a little special.  There is no project
+            if opts.repo_project == "source":
+                # The source repository is a little special.  There is no project
                 # manifest file for it.  A specific project must always be explicitly
-                # specified when building from fbsource.
+                # specified when building from source.
                 raise UsageError(
-                    "no project name specified (required when building in fbsource)"
+                    "no project name specified (required when building in source)"
                 )
             args.project = opts.repo_project
 
@@ -172,7 +172,7 @@ class ProjectCmdBase(SubCmd):
         )
         parser.add_argument(
             "--current-project",
-            help="Specify the name of the fbcode_builder manifest file for the "
+            help="Specify the name of the code_builder manifest file for the "
             "current repository.  If not specified, the code will attempt to find "
             "this in a .projectid file in the repository root.",
         )
@@ -968,7 +968,7 @@ jobs:
 """
             )
 
-            getdepscmd = f"{py3} build/fbcode_builder/getdeps.py"
+            getdepscmd = f"{py3} build/code_builder/getdeps.py"
 
             out.write("  build:\n")
             out.write("    runs-on: %s\n" % runs_on)
@@ -1014,7 +1014,7 @@ jobs:
                     # brew is installed as regular user
                     sudo_arg = ""
                 out.write(
-                    f"      run: {sudo_arg}python3 build/fbcode_builder/getdeps.py --allow-system-packages install-system-deps --recursive {manifest.name}\n"
+                    f"      run: {sudo_arg}python3 build/code_builder/getdeps.py --allow-system-packages install-system-deps --recursive {manifest.name}\n"
                 )
 
             projects = loader.manifests_in_dependency_order()
@@ -1197,16 +1197,16 @@ def parse_args():
         default=False,
     )
     add_common_arg(
-        "--facebook-internal",
-        help="Setup the build context as an FB internal build",
+        "--internal",
+        help="Setup the build context as an internal build",
         action="store_true",
         default=None,
     )
     add_common_arg(
-        "--no-facebook-internal",
-        help="Perform a non-FB internal build, even when in an fbsource repository",
+        "--no-internal",
+        help="Perform a non internal build, even when in a source repository",
         action="store_false",
-        dest="facebook_internal",
+        dest="internal",
     )
     add_common_arg(
         "--allow-system-packages",
@@ -1223,7 +1223,7 @@ def parse_args():
     )
     add_common_arg(
         "--lfs-path",
-        help="Provide a parent directory for lfs when fbsource is unavailable",
+        help="Provide a parent directory for lfs when source is unavailable",
         default=None,
     )
 

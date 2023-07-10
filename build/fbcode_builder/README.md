@@ -1,20 +1,9 @@
-# Easy builds for Facebook projects
-
-This directory contains tools designed to simplify continuous-integration
-(and other builds) of Facebook open source projects.  In particular, this helps
-manage builds for cross-project dependencies.
-
-The main entry point is the `getdeps.py` script.  This script has several
-subcommands, but the most notable is the `build` command.  This will download
-and build all dependencies for a project, and then build the project itself.
-
 ## Deployment
 
-This directory is copied literally into a number of different Facebook open
-source repositories.  Any change made to code in this directory will be
+This directory is copied literally into a number of different repositories.  Any change made to code in this directory will be
 automatically be replicated by our open source tooling into all GitHub hosted
-repositories that use `fbcode_builder`.  Typically this directory is copied
-into the open source repositories as `build/fbcode_builder/`.
+repositories that use `quasilink`.  Typically this directory is copied
+into the open source repositories as `build/future/`.
 
 
 # Project Configuration Files
